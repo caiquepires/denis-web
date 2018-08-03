@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width" charset="UTF-8"/>
+<title>Cadastro de Cliente</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.9/js/gijgo.min.js"
+	type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.9/css/gijgo.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<!-- Image and text -->
+	<nav class="navbar navbar-light bg-light">
+		<a class="navbar-brand" href="#"> <img
+			src="/images/bemBA_liso.ico" width="100" height="40"
+			class="d-inline-block align-top" alt="bembaIT">
+		</a>
+	</nav>
+
+	<form class="form-horizontal" method="post" action="/clientes">
+	
+		<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}"/>
+			</div>
+
+
+		<div class="card">
+			<div class="card-header">
+				<h4>Cadastro de Cliente</h4>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+
+					<div class="form-group row">
+						<label for="nome" class="col-sm-1 control-label maska">Nome:</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="nome" name="nome" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="telefone" class="col-sm-1 control-label maska">Telefone:</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="telefone"
+								name="telefone" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="documento" class="col-sm-1 control-label maska">Documento:</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="documento">
+								<option value=""/>
+								<option th:each="documento : ${todosTipoDocumento}"  th:value="${documento}" th:text="${documento.descricao}"/>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label for="nroDocumento" class="col-sm-1 control-label maska">Nrº
+							do Documento:</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="nroDocumento"
+								name="nroDocumento" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="aniversario" class="col-sm-1 control-label maska">Aniversário:</label>
+						<div class="col-sm-2">
+							<!-- <input type="text" class="form-control" id="aniversario" name="aniversario"/> -->
+							<input id="aniversario" width="276" class="form-control"
+								name="aniversario" />
+							<script>
+								$('#aniversario').datepicker({
+									uiLibrary : 'bootstrap4',
+									format : 'dd/mm'
+								});
+							</script>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="offset-1 col-sm-10">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</form>
+
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
+</html>
